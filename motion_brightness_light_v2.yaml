@@ -80,8 +80,9 @@ condition:
 action:
   - service: light.turn_on
     target: !input light_target
-    color_rgb: !input color_rgb
-    brightness_pct: !input brightness
+    data:
+      color_rgb: !input color_rgb
+      brightness_pct: !input brightness
   - wait_for_trigger:
       platform: state
       entity_id: !input motion_entity
