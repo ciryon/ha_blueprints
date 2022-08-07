@@ -40,7 +40,13 @@ blueprint:
           min: 0
           max: 3600
           unit_of_measurement: seconds
-
+    color_rgb:
+      name: Colo
+      description: Color to set for the light when turning on.
+      default: [255, 255, 255]
+      selector:
+        color_rgb:
+        
 # If motion is detected within the delay,
 # we restart the script.
 mode: restart
@@ -67,6 +73,7 @@ condition:
 action:
   - service: light.turn_on
     target: !input light_target
+    color_rgb: !input color_rgb
   - wait_for_trigger:
       platform: state
       entity_id: !input motion_entity
