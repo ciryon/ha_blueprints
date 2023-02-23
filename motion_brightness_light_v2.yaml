@@ -70,9 +70,9 @@ trigger:
   to: "on"
 
 condition:
-  - condition: or
+  - condition: and
     conditions:
-      - "{{ expand(lights.entity_id) | selectattr('state', '==', 'on') | list | count > 0 }}" # some lights in the group are on
+      - "{{ expand(lights.entity_id) | selectattr('state', '==', 'on') | list | count == 0 }}" # no lights in the group are on
       - condition: numeric_state
         entity_id: !input brightness_entity
         below: !input brightness_trigger
